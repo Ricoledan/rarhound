@@ -1,6 +1,8 @@
 import argparse
 import os
 import sys
+from pathlib import Path
+import rarfile
 
 parser = argparse.ArgumentParser(
     prog="rarhound",
@@ -10,7 +12,7 @@ parser = argparse.ArgumentParser(
 )
 
 parser.add_argument(
-    "-f", "--fetch", action="store_true", help="find RAR files from directory provided"
+    "-f", "--fetch", action="store_true", help="find and unzip all RAR files from root directory provided"
 )
 
 parser.add_argument("Path", metavar="path", type=str, help="the path to list")
@@ -23,9 +25,9 @@ if not os.path.isdir(input_path):
     print("The path specified does not exist")
     sys.exit()
 
-for folder in os.listdir(input_path):
+for path in Path(input_path).rglob('*.rar'):
+    fetchRar = os.path.join(input_path, path)
+    rf = rarfile.RarFile(fetchRar)
     if args.fetch:
-        print(folder)
-        #     size = os.stat(os.path.join(input_path, folder)).st_size
-        #     folder = '%10d  %s' % (size, folder)
-        # print(folder)
+        print(fetchRar)
+        print(rf.namelist())
