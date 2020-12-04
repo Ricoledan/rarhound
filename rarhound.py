@@ -25,7 +25,9 @@ if not os.path.isdir(input_path):
     print("The path specified does not exist")
     sys.exit()
 
-for path in Path(input_path).rglob('*.rar'):
+print("Woof! Woof! 🐕")
+
+for path in Path(input_path).rglob("*.rar"):
     fetchRar = os.path.join(input_path, path)
     getDirectory = os.path.split(path)[0]
     rf = rarfile.RarFile(fetchRar)
@@ -35,5 +37,5 @@ for path in Path(input_path).rglob('*.rar'):
 
     if args.fetch:
         print(fetchRar)
-        print('has_rarfile: ', hasRarfile, 'has_password: ', hasPassword)
+        print("has_rarfile: ", hasRarfile, "has_password: ", hasPassword)
         rf.extractall(getDirectory)
