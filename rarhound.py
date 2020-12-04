@@ -33,7 +33,6 @@ for path in Path(input_path).rglob("*.rar"):
     rf = rarfile.RarFile(fetchRar)
     hasRarfile = rarfile.is_rarfile(fetchRar)
     hasPassword = rf.needs_password()
-    name = rf.namelist()
 
     if args.fetch:
         print(fetchRar)
