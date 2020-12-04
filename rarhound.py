@@ -27,13 +27,13 @@ if not os.path.isdir(input_path):
 
 for path in Path(input_path).rglob('*.rar'):
     fetchRar = os.path.join(input_path, path)
+    getDirectory = os.path.split(path)[0]
     rf = rarfile.RarFile(fetchRar)
-    check = rarfile.is_rarfile(fetchRar)
-    needsPassword = rf.needs_password()
+    hasRarfile = rarfile.is_rarfile(fetchRar)
+    hasPassword = rf.needs_password()
     name = rf.namelist()
 
     if args.fetch:
         print(fetchRar)
-        print('is_rarfile: ', check)
-        print('needs_password: ', needsPassword)
-        rf.extractall()
+        print('has_rarfile: ', hasRarfile, 'has_password: ', hasPassword)
+        rf.extractall(getDirectory)
