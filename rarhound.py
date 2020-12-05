@@ -31,10 +31,10 @@ for path in Path(input_path).rglob("*.rar"):
     fetchRar = os.path.join(input_path, path)
     getDirectory = os.path.split(path)[0]
     rf = rarfile.RarFile(fetchRar)
-    hasRarfile = rarfile.is_rarfile(fetchRar)
-    hasPassword = rf.needs_password()
+    name = rf.namelist()
 
     if args.fetch:
-        print(fetchRar)
-        print("has_rarfile: ", hasRarfile, "has_password: ", hasPassword)
+        print("sniff...sniff...Woof!", name[0])
         rf.extractall(getDirectory)
+
+print("Woof! 🐕")
