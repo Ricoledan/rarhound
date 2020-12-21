@@ -4,8 +4,8 @@ RARHound is a simple python CLI tool that does the monotonous work of unpacking 
 
 ## Commands
 
-`python3 rarhound.py -f <directory>`
+`python rarhound.py -f <directory>`
 
 ## Dependencies
 
-`pip3 install rarfile`
+`pip install rarfile`
